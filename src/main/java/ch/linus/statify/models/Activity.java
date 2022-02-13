@@ -1,8 +1,7 @@
 package ch.linus.statify.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,6 +11,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 public class Activity {
     @Id
     @GeneratedValue
@@ -20,10 +21,12 @@ public class Activity {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     private User owner;
 
     @ManyToMany
     @JoinTable
+    @JsonIgnore
     private List<DailyStatistic> dailyStatistics;
 
     @Column

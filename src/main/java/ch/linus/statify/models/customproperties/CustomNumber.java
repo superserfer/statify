@@ -1,9 +1,7 @@
 package ch.linus.statify.models.customproperties;
 
 import ch.linus.statify.models.CustomProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +10,8 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 public class CustomNumber extends CustomProperty {
     @Column
     private int intValue;

@@ -1,10 +1,7 @@
 package ch.linus.statify.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -13,6 +10,8 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Inheritance(strategy = InheritanceType.JOINED)
 public class CustomProperty {
     @Id
@@ -23,6 +22,10 @@ public class CustomProperty {
     @Column
     private String name;
 
+    /**
+     * Should be null when used in daily statistics
+     * Use this only to define default custom properties inside the user
+     */
     @ManyToOne
     @JoinColumn
     @JsonIgnore

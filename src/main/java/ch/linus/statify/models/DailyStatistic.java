@@ -1,8 +1,8 @@
 package ch.linus.statify.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -13,6 +13,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 public class DailyStatistic {
     @Id
     @GeneratedValue
@@ -24,6 +26,7 @@ public class DailyStatistic {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     private User user;
 
     @ManyToMany(mappedBy = "dailyStatistics")
