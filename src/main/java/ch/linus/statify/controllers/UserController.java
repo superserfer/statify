@@ -33,4 +33,20 @@ public class UserController {
         User createdUser = this.userService.createUser(user);
         return new ResponseEntity<>(FullUserDTO.build(createdUser), HttpStatus.CREATED);
     }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+    public ResponseEntity<PartialUserDTO> updateUser(@PathVariable UUID id, @RequestBody UserDTO user) {
+        PartialUserDTO updatedUser = PartialUserDTO.build(this.userService.updateUser(id, User.builder()
+                .birthday(user.getBirthday())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .build()));
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable UUID id) {
+        this.userService.deleteUser(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

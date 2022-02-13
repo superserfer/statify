@@ -6,6 +6,7 @@ import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,11 +28,11 @@ public class DailyStatistic {
     @ManyToOne
     @JoinColumn
     @JsonIgnore
-    private User user;
+    private User user = null;
 
     @ManyToMany(mappedBy = "dailyStatistics")
-    private List<Activity> activities;
+    private List<Activity> activities = new ArrayList<>();
 
     @OneToMany(mappedBy = "dailyStatistic")
-    private List<CustomProperty> customProperties;
+    private List<CustomProperty> customProperties = new ArrayList<>();
 }

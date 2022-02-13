@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -29,10 +28,10 @@ public class CustomProperty {
     @ManyToOne
     @JoinColumn
     @JsonIgnore
-    private User user;
+    private User user = null;
 
     @ManyToOne
     @JoinColumn
     @JsonIgnore
-    private DailyStatistic dailyStatistic;
+    private DailyStatistic dailyStatistic = null;
 }

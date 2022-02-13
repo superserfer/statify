@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,11 +30,11 @@ public class User {
     private Date birthday;
 
     @OneToMany(mappedBy = "user")
-    private List<DailyStatistic> dailyStatistics;
+    private List<DailyStatistic> dailyStatistics = new ArrayList<>();
 
     @OneToMany(mappedBy = "owner")
-    private List<Activity> activities;
+    private List<Activity> activities = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<CustomProperty> defaultProperties;
+    private List<CustomProperty> defaultProperties = new ArrayList<>();
 }

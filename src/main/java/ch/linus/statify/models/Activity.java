@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,12 +23,12 @@ public class Activity {
     @ManyToOne
     @JoinColumn
     @JsonIgnore
-    private User owner;
+    private User owner = null;
 
     @ManyToMany
     @JoinTable
     @JsonIgnore
-    private List<DailyStatistic> dailyStatistics;
+    private List<DailyStatistic> dailyStatistics = new ArrayList<>();
 
     @Column
     private String description;
