@@ -29,6 +29,6 @@ public class DailyStatistic {
     @ManyToMany(mappedBy = "dailyStatistics")
     private List<Activity> activities;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "dailyStatistic")
     private List<CustomProperty> customProperties;
 }
