@@ -2,7 +2,7 @@
 An Application to track daily stats about you.
 
 ## Getting Started
-###Requirements
+### Requirements
 - Don't be Joel
 
 ## Authors
