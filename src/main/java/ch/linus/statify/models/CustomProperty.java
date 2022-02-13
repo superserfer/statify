@@ -1,34 +1,35 @@
 package ch.linus.statify.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class DailyStatistic {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class CustomProperty {
     @Id
     @GeneratedValue
     @Column(updatable = false, nullable = false)
-    private UUID dailyStatsId;
+    private UUID customPropertyId;
 
     @Column
-    private Date date;
+    private String name;
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     private User user;
 
-    @ManyToMany(mappedBy = "dailyStatistics")
-    private List<Activity> activities;
-
-    @OneToMany(mappedBy = "user")
-    private List<CustomProperty> customProperties;
+    @ManyToOne
+    @JoinColumn
+    @JsonIgnore
+    private DailyStatistic dailyStatistic;
 }

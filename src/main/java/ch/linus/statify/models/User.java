@@ -2,7 +2,6 @@ package ch.linus.statify.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -11,7 +10,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -35,4 +33,7 @@ public class User {
 
     @OneToMany(mappedBy = "owner")
     private List<Activity> activities;
+
+    @OneToMany(mappedBy = "user")
+    private List<CustomProperty> defaultProperties;
 }
