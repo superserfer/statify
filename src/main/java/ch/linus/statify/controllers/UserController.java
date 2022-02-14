@@ -24,19 +24,19 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ResponseEntity<PartialUserDTO> getUserById(@PathVariable UUID id) {
-        User user = this.userService.getUser(id);
+        User user = this.userService.getById(id);
         return new ResponseEntity<>(PartialUserDTO.build(user), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<FullUserDTO> createUser(@RequestBody User user) {
-        User createdUser = this.userService.createUser(user);
+        User createdUser = this.userService.create(user);
         return new ResponseEntity<>(FullUserDTO.build(createdUser), HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
     public ResponseEntity<PartialUserDTO> updateUser(@PathVariable UUID id, @RequestBody UserDTO user) {
-        PartialUserDTO updatedUser = PartialUserDTO.build(this.userService.updateUser(id, User.builder()
+        PartialUserDTO updatedUser = PartialUserDTO.build(this.userService.update(id, User.builder()
                 .birthday(user.getBirthday())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
@@ -46,7 +46,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable UUID id) {
-        this.userService.deleteUser(id);
+        this.userService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

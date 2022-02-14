@@ -7,6 +7,7 @@ import ch.linus.statify.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -20,26 +21,31 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(UUID id) {
+    public List<User> getAll() {
+        return (List<User>) this.userRepository.findAll();
+    }
+
+    @Override
+    public User getById(UUID id) {
         return getExistingUser(id);
     }
 
     @Override
-    public User createUser(User newUser) {
-        return this.userRepository.save(newUser);
+    public User create(User entity) {
+        return this.userRepository.save(entity);
     }
 
     @Override
-    public User updateUser(UUID id, User updatedUser) {
+    public User update(UUID id, User entity) {
         User user = getExistingUser(id);
-        user.setBirthday(updatedUser.getBirthday());
-        user.setFirstName(updatedUser.getFirstName());
-        user.setLastName(updatedUser.getLastName());
+        user.setBirthday(entity.getBirthday());
+        user.setFirstName(entity.getFirstName());
+        user.setLastName(entity.getLastName());
         return this.userRepository.save(user);
     }
 
     @Override
-    public void deleteUser(UUID id) {
+    public void deleteById(UUID id) {
         this.userRepository.deleteById(id);
     }
 
