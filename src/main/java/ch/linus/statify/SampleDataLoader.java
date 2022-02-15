@@ -4,6 +4,7 @@ import ch.linus.statify.models.Activity;
 import ch.linus.statify.models.CustomProperty;
 import ch.linus.statify.models.User;
 import ch.linus.statify.models.customproperties.CustomBoolean;
+import ch.linus.statify.models.customproperties.CustomNumber;
 import ch.linus.statify.models.customproperties.CustomString;
 import ch.linus.statify.repositories.ActivityRepository;
 import ch.linus.statify.repositories.UserRepository;
@@ -56,11 +57,22 @@ public class SampleDataLoader implements CommandLineRunner {
             customBoolean.setName("hasSleptGood");
             customBoolean.setBooleanValue(false);
             customBoolean.setUser(user);
-            CustomProperty customProperty = this.customPropertyService.create(customBoolean);
+            this.customPropertyService.create(customBoolean);
+
+            CustomNumber customNumber = new CustomNumber();
+            customNumber.setName("Steps");
+            customNumber.setIntValue(10_000);
+            customNumber.setUser(user);
+            this.customPropertyService.create(customNumber);
+
+            CustomString customString = new CustomString();
+            customString.setName("Meal");
+            customString.setStringValue("I hope");
+            customString.setUser(user);
+            CustomProperty customProperty = this.customPropertyService.create(customString);
 
             System.out.println("User Id: " + user.getUserId());
-            System.out.println("Activity Id: " + activity.getActivityId());
-            System.out.println("CustomBoolean id: " + customProperty.getCustomPropertyId());
+            System.out.println(customProperty.getUser());
         }
     }
 }
