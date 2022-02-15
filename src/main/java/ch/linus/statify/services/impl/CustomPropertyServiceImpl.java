@@ -21,7 +21,13 @@ public class CustomPropertyServiceImpl implements CustomPropertyService {
     }
 
     @Override
+    public void deleteByDailyStatisticId(UUID id) {
+        this.customPropertyRepository.deleteAll(this.customPropertyRepository.getByDailyStatisticId(id));
+    }
+
+    @Override
     public CustomProperty create(CustomProperty newEntity) {
+        newEntity.setCustomPropertyId(null);
         return this.customPropertyRepository.save(newEntity);
     }
 
